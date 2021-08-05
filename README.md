@@ -2,6 +2,8 @@
 
 ## A Lab of Funny idea for Git dir leak hack tools hack back
 
+## idea came from [there](https://twitter.com/drivertomtt/status/1422806890254200835?s=19)
+
 # Usage :
 
 ```
