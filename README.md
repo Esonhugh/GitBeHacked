@@ -31,13 +31,14 @@ optional arguments:
                         badfile in cron mode name
   -p ATPATH, --atpath ATPATH
                         bad file you want located at path such as ../../../
+  -c, --clean           it will used like file clean to delete file we generate or overwrite add it to confirm
 
 ```
 
-rcfile need username option to gen bad file like ../../../../home/{username}/.bashrc
+rcfile need username option to gen bad file like ../../../../home/{username}/.bashrc according to the bashrc template.
 
-start and cron need badfilename option target has root and it will gen file like ../../../../etc/{init.d,cron.d}/{badfilename}
+start and cron need badfilename option target has root and it will gen file like ../../../../etc/{init.d,cron.d}/{badfilename}.
 
 msg is just like messages ,it will read the badpayload {badfilename option} at current dir and gen a file at {atpath}.
-finally, add to the git repo. so it is more general and simple
+finally, add to the git repo. so it is more general and simple.
 
