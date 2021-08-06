@@ -14,7 +14,8 @@ $ sudo python3 GitBeHacked.py -h
             | |  _| | __|  _ \ / _ \ |_| |/ _` |/ __| |/ / _ \/ _` |
             | |_| | | |_| |_) |  __/  _  | (_| | (__|   <  __/ (_| |
              \____|_|\__|____/ \___|_| |_|\__,_|\___|_|\_\___|\__,_|
-                                                                        
+
+[?] create a repo which contains the file at parent dict and hack back the "githack" like tools
 usage: GitBeHacked.py [-h] [-D OUTPUTDIRECTORYNAME] [--user USER] [--os OS] [--method METHOD] [--badfilename BADFILENAME]
 
 optional arguments:
