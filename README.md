@@ -2,7 +2,6 @@
 
 ## A Lab of Funny idea for Git dir leak hack tools hack back
 
-## idea came from [there](https://twitter.com/drivertomtt/status/1422806890254200835?s=19)
 
 # Usage :
 
@@ -35,10 +34,19 @@ optional arguments:
 
 ```
 
+## method 1
 rcfile need username option to gen bad file like ../../../../home/{username}/.bashrc according to the bashrc template.
 
+## method 2
 start and cron need badfilename option target has root and it will gen file like ../../../../etc/{init.d,cron.d}/{badfilename}.
 
+## method 3
 msg is just like messages ,it will read the badpayload {badfilename option} at current dir and gen a file at {atpath}.
 finally, add to the git repo. so it is more general and simple.
 
+# Aims
+You can use the git repo you gen at your honeypot website.
+It will let the gitHack / dumpAll -like tool occur the folder transfer.
+The hacker will got funny file your add in.
+
+# idea came from [there](https://twitter.com/drivertomtt/status/1422806890254200835?s=19)
