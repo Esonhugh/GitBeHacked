@@ -166,7 +166,7 @@ def main():
     praser.add_argument("-p","--atpath",help="bad file you want located at path such as ../../../ ")
     praser.add_argument("-c","--clean",help="it will used like file clean to delete file we generate or overwrite add it to confirm",action="store_true")
     arg = praser.parse_args()
-    print(arg)
+    # print(arg)
     # argcheck(arg)
     badRepoGenerator(username=arg.user,
                      outputDirName=arg.outputDirectoryName,
